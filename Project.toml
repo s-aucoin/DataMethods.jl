@@ -1,9 +1,41 @@
 name = "DataMethods"
 uuid = "dab9b2ec-b9a3-42f2-bf16-a8cff39c6ff1"
-authors = ["Sam Aucoin", "sam.aucoin@dal.ca"]
 version = "1.0.0-DEV"
+authors = ["Sam Aucoin", "sam.aucoin@dal.ca"]
+
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DSP = "717857b8-e6f2-59f4-9121-6e50c889abd2"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+DimensionalData = "0703355e-b756-11e9-17c0-8b28908087d0"
+DocumenterTools = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
+ExtraStats = "e63c6cca-01f4-4512-8a9d-7d793fea96eb"
+FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
+Glob = "c27321d9-0574-5035-807b-f59d2c89b15c"
+NaturalSort = "c020b1a1-e9b0-503a-9c33-f039bfc54a85"
+NonlinearSolve = "8913a72c-1f9b-4ce2-8d82-65094dcecaec"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+Rasters = "a3a2b9e3-a471-40c9-b274-f788e487c689"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [compat]
+CSV = "1.1.0"
+DSP = "0.8.6"
+DataFrames = "1.8.2"
+Dates = "1.11.0"
+DimensionalData = "0.30.2"
+DocumenterTools = "0.1.21"
+ExtraStats = "1.0.0"
+FFTW = "1.10.0"
+Glob = "1.5.0"
+NaturalSort = "1.0.0"
+NonlinearSolve = "4.32.0"
+PyCall = "1.96.4"
+Rasters = "0.15.0"
+Statistics = "1.11.5"
+TimeZones = "1.22.2"
 julia = "1.10.10"
 
 [extras]
