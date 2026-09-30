@@ -25,10 +25,11 @@ jobs:
         with:
           version: '1'
       - uses: julia-actions/cache@v3
+      - name: Remove PyCall Conda environment
+        run: rm -rf ~/.julia/conda
       - name: Install dependencies
         shell: julia --color=yes --project=docs {0}
         run: |
-          rm -rf ~/.julia/conda
           using Pkg
           Pkg.develop(PackageSpec(path=pwd()))
           Pkg.instantiate()
