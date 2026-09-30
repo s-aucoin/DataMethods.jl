@@ -56,7 +56,7 @@ function wave_U_ofz(IA, IF, IP, r, h, θ, θ₀, β, α; method=:velocity, incl_
 
         # Find the corresponding wavenumber
         kₖ = Array{eltype(ωₖ)}(undef, size(ωₖ))
-        @threads for (pos, freq) in enumerate(ωₖ)
+        @threads for (pos, freq) in collect(enumerate(ωₖ))
             # Only index h if it is not a constant #
             if length(h) > 1
                 h2use = h[pos]

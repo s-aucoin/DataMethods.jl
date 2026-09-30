@@ -106,7 +106,7 @@ function FT_params(fs, s_seg; fil_frac = 0, win_s = :rect, ovlap = 0.5)
     N = Int(round(s_seg * fs))                        # Number of points in a segment (must be an integer)
     overlap = ceil(N*ovlap)                    # Amount of overlap between the segments
 
-    win_func = getfield(FourierFuncs, win_s)
+    win_func = getfield(DSP, win_s)
     win = win_func(N)                          # Window function
 
     freqs = fftshift(fftfreq(N, fs))           # (Hz) Nyquist-adjusted frequencies
@@ -159,7 +159,7 @@ corresponding `ref_data` point.
 
 # Example
 ```
-julia> using FourierFuncs, Random
+julia> using ExtraStats, Random
 
 julia> Random.seed!(1234)
 TaskLocalRNG()

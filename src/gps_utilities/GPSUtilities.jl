@@ -85,13 +85,13 @@ end
 
 
 """
-    clean_and_mean(gps_pths::Vector{String}; time_format = "YYYYmmddHHMMSS", tz = tz"UTC", fs_gps = 10)
+    clean_and_mean(gps_pths::Vector{String}; time_format = "YYYYmmddHHMMSS", tz = tz"UTC", fs_gps = 10, datatypes=[Int, Bool, String, String, String, String, Int, Float64, Int])
 
 Clean the GPS data up and average the latitude and longitude of multiple GPSs and save each as a file.
 """
-function clean_and_mean(gps_pths::Vector{String}; time_format = "YYYYmmddHHMMSS", tz = tz"UTC", fs_gps = 10)
+function clean_and_mean(gps_pths::Vector{String}; time_format = "YYYYmmddHHMMSS", tz = tz"UTC", fs_gps = 10, datatypes=[Int, Bool, String, String, String, String, Int, Float64, Int])
     # Clean the data up and save as files #
-    clean_gps_data.(gps_pths; time_format = time_format, tz = tz, fs_gps = fs_gps)
+    clean_gps_data.(gps_pths; time_format, tz, fs_gps, datatypes)
 
     # mean the lat and lon and save as a file #
     cleaned_fnames = first.(splitext.(gps_pths)) .* "_cleaned.csv"

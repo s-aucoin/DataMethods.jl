@@ -112,14 +112,7 @@ function remove_loops(data::DimStack; tol = 0, max_z = 0, replace=false)
         error("Input data must have property z")
     end
 
-    # loop over each time and flag values that aren't monotonically decreasing in z
-    for tidx in 1:size(data)[1]
-        if data.z[tidx] < (max_z .+ tol)
-            max_z = data.z[tidx]
-        else
-            push!(idx2replace, tidx)
-        end
-    end
+    idx2replace = FindLoops(data.z; tol, max_z)
 
     if replace
         # replace the flagged values with NaNs
@@ -143,14 +136,7 @@ function remove_loops(data::RasterStack; tol = 0, max_z = 0, replace=false)
         error("Input data must have property z")
     end
 
-    # loop over each time and flag values that aren't monotonically decreasing in z
-    for tidx in 1:size(data)[1]
-        if data.z[tidx] < (max_z .+ tol)
-            max_z = data.z[tidx]
-        else
-            push!(idx2replace, tidx)
-        end
-    end
+    idx2replace = FindLoops(data.z; tol, max_z)
 
     if replace
         # replace the flagged values with NaNs
@@ -174,14 +160,7 @@ function remove_loops(data::NamedTuple; tol = 0, max_z = 0, replace=false)
         error("Input data must have property z")
     end
 
-    # loop over each time and flag values that aren't monotonically decreasing in z
-    for tidx in 1:size(data.z)[1]
-        if data.z[tidx] < (max_z .+ tol)
-            max_z = data.z[tidx]
-        else
-            push!(idx2replace, tidx)
-        end
-    end
+    idx2replace = FindLoops(data.z; tol, max_z)
 
     if replace
         # replace the flagged values with NaNs
