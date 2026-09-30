@@ -28,9 +28,11 @@ jobs:
       - name: Install dependencies
         shell: julia --color=yes --project=docs {0}
         run: |
+          rm -rf ~/.julia/conda
           using Pkg
           Pkg.develop(PackageSpec(path=pwd()))
           Pkg.instantiate()
+          Pkg.build("PyCall")
       - name: Build and deploy
         run: julia --color=yes --project=docs docs/make.jl
         env:
