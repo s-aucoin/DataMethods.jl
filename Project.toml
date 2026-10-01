@@ -30,7 +30,7 @@ ExtraStats = {rev = "main", url = "https://github.com/s-aucoin/ExtraStats.jl"}
 CSV = "1.1.0"
 DSP = "0.8.6"
 DataFrames = "1.8.2"
-Dates = "1.11.0"
+Dates = "1.10, 1.11.0"
 DimensionalData = "0.30.2"
 DocumenterTools = "0.1.21"
 ExtraStats = "0.1.1"
