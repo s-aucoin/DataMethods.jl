@@ -1,5 +1,6 @@
 using FFTW
 using DSP
+using LsqFit
 import Base.Threads.@threads
 
 export Welch, FT_params, detrend2d, dfiltfilt, findspikes, despike
