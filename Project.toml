@@ -40,7 +40,7 @@ NaturalSort = "1.0.0"
 NonlinearSolve = "4.32.0"
 PyCall = "1.96.4"
 Rasters = "0.15.0"
-Statistics = "1.11.5"
+Statistics = "1.10, 1.11.5"
 TimeZones = "1.22.2"
 julia = "1.11 - 1.13"
 
