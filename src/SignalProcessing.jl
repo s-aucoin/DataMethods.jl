@@ -2,7 +2,7 @@ using FFTW
 using DSP
 import Base.Threads.@threads
 
-export Welch, FT_params, detrend2d, findspikes, despike
+export Welch, FT_params, detrend2d, dfiltfilt, findspikes, despike
 
 ############################################
 """
@@ -108,6 +108,34 @@ function detrend2d(data, axis)
 
     return (detr, fit_ln)                             # Return the detrended data and the fits
 
+end
+
+
+"""
+    dfiltfilt(data, axis, filters, designmethod, fs)
+
+Filters time series `data` of one or more dimensions along `axis` with one or more `filters` using `designmethod`.
+
+Also re-adds the linear fit after filtering.
+"""
+function dfiltfilt(data, axis, filters, designmethod, fs)
+
+    (data_detrend, fitp) = detrend2d(data, axis) # Remove the linear trend
+
+    filt_data = copy(data_detrend)
+        for ii in filters
+            # applies over the 1st dimension so need to prime twice to get the proper matrix
+            filt_data = filtfilt(digitalfilter(ii, designmethod; fs=fs), filt_data')'
+        end
+
+    retrend_data = filt_data + fitp              # Re-add the trend to retain mean info
+
+    # Make 1d data a vector #
+    if length(size(data)) == 1
+        return vec(retrend_data)
+    else
+        return retrend_data
+    end
 end
 
 ############################################

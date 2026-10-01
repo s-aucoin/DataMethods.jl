@@ -21,6 +21,7 @@ int_trap
 Welch
 FT_params
 detrend2d
+dfiltfilt
 findspikes
 despike
 ```
