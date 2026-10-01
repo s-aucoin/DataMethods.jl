@@ -2,7 +2,7 @@ using FFTW
 using DSP
 import Base.Threads.@threads
 
-export Welch, FT_params, findspikes, despike
+export Welch, FT_params, detrend2d, findspikes, despike
 
 ############################################
 """
@@ -75,6 +75,39 @@ function FT_params(fs, s_seg; fil_frac = 0, win_s = :rect, ovlap = 0.5)
     lims = (f_min, f_max, nothing, nothing)
 
     return (; N, overlap, win, freqs, fil_w, freq_sm, pos_idx, f_max, f_min, lims)
+end
+
+
+"""
+    detrend2d(data, axis)
+
+Removes the linear best fit line from 1d or 2d `data` along the first dimension, `axis`.
+
+Returns both the detrended data `detr` and the fitted line `fit_ln`.
+"""
+function detrend2d(data, axis)
+
+    # Transform 1d data #
+    if length(size(data)) == 1
+        data = data'
+    end
+
+    ## Model for least squares fitting ##
+    model(t, p) = p[1] * t .+ p[2]                    # p is a vector of parameters
+    p0 = [0.1, 0.1]                                   # First guess of parameters
+
+    fit_ln = Array{eltype(data)}(undef, size(data))        # Initilize a dummy matrix to fill
+    @threads for ii in 1:size(data)[1]                # Loop over the first dimension of the data
+        v_temp = data[ii, :]                          # Extract the time series at the range
+        nonans = findall(!isnan, v_temp)              # Find all the non-NaNs
+        lfit = curve_fit(model, axis[nonans], v_temp[nonans], p0) # Fit a line to it
+        fit_ln[ii,:] = model(axis, lfit.param)        # Put the trend vector into the matrix
+    end
+
+    detr = data - fit_ln                              # Remove the trend
+
+    return (detr, fit_ln)                             # Return the detrended data and the fits
+
 end
 
 ############################################

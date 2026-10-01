@@ -32,6 +32,7 @@ int_trap
 ```@docs
 Welch
 FT_params
+detrend2d
 findspikes
 despike
 ```

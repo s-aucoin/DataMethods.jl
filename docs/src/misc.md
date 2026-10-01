@@ -20,6 +20,7 @@ int_trap
 ```@docs; canonical=false
 Welch
 FT_params
+detrend2d
 findspikes
 despike
 ```

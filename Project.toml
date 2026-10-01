@@ -1,6 +1,6 @@
 name = "DataMethods"
 uuid = "dab9b2ec-b9a3-42f2-bf16-a8cff39c6ff1"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Sam Aucoin", "sam.aucoin@dal.ca"]
 
 [workspace]
