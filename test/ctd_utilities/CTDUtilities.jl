@@ -14,18 +14,18 @@ using Rasters
         test_p = [0.1, 1.0, 2.0, 1.5, 0.5, 3.0]
         @test FindLoops(test_p) == [4, 5]
 
-        z = DimArray(test_p, (Dim{:z}(1:6),))
+        z = DimArray(-test_p, (Dim{:z}(1:6),))
         x = DimArray([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], (Dim{:z}(1:6),))
         ds = DimStack((z=z, x=x))
         cleaned_ds = remove_loops(ds; tol=0.0)
-        @test Array(cleaned_ds.z) == [0.1, 1.0, 2.0, 3.0]
+        @test Array(cleaned_ds.z) == [-0.1, -1.0, -2.0, -3.0]
         @test Array(cleaned_ds.x) == [1.0, 2.0, 3.0, 6.0]
 
-        z = Raster(test_p, dims=(Dim{:z}(1:6),))
+        z = Raster(-test_p, dims=(Dim{:z}(1:6),))
         x = Raster([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], dims=(Dim{:z}(1:6),))
         rs = RasterStack((z=z, x=x))
         cleaned_rs = remove_loops(rs; tol=0.0)
-        @test Array(cleaned_rs.z) == [0.1, 1.0, 2.0, 3.0]
+        @test Array(cleaned_rs.z) == [-0.1, -1.0, -2.0, -3.0]
         @test Array(cleaned_rs.x) == [1.0, 2.0, 3.0, 6.0]
     end
 

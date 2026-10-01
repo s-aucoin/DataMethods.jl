@@ -112,7 +112,7 @@ function remove_loops(data::DimStack; tol = 0, max_z = 0, replace=false)
         error("Input data must have property z")
     end
 
-    idx2replace = FindLoops(data.z; tol, max_z)
+    idx2replace = FindLoops(-data.z; tol, max_z)
 
     if replace
         # replace the flagged values with NaNs
@@ -136,7 +136,7 @@ function remove_loops(data::RasterStack; tol = 0, max_z = 0, replace=false)
         error("Input data must have property z")
     end
 
-    idx2replace = FindLoops(data.z; tol, max_z)
+    idx2replace = FindLoops(-data.z; tol, max_z)
 
     if replace
         # replace the flagged values with NaNs
@@ -160,7 +160,7 @@ function remove_loops(data::NamedTuple; tol = 0, max_z = 0, replace=false)
         error("Input data must have property z")
     end
 
-    idx2replace = FindLoops(data.z; tol, max_z)
+    idx2replace = FindLoops(-data.z; tol, max_z)
 
     if replace
         # replace the flagged values with NaNs
