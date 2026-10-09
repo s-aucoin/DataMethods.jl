@@ -28,7 +28,7 @@ TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 ExtraStats = {rev = "main", url = "https://github.com/s-aucoin/ExtraStats.jl"}
 
 [compat]
-CSV = "1.1.0"
+CSV = "0.10 - 1.1"
 DSP = "0.8.6"
 DataFrames = "1.8.2"
 Dates = "1.10, 1.11.0"
