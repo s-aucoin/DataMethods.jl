@@ -27,7 +27,7 @@ This function replaces lower_tres_mean.
 """
 function IntervalAverage(data::AbstractMatrix{T} where T<:Any, Δx, fs, D)
 
-    Nx_chunk = floor(Int, fs*Δx*D)#Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged (round down if not an integer)
+    Nx_chunk = Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged
     new_Nx = Int(length(data)/(size(data, 1)*Nx_chunk)) # The new number of total indices in the x dimension
 
     data_reshaped = reshape(data, (size(data, 1), Nx_chunk, new_Nx)) # Reshape the data into a 3D array where the second dimension corresponds to the chunk size
@@ -53,7 +53,7 @@ This function replaces lower_tres_mean.
 """
 function IntervalAverage(data::AbstractMatrix{T} where T<:Any, Δx, fs, D, δ₁, δ₂)
 
-    Nx_chunk = floor(Int, fs*Δx*D)#Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged (round down if not an integer)
+    Nx_chunk = Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged
     Nx_first_chunk = Int(δ₁*fs*Δx*D)
     Nx_last_chunk = Int(δ₂*fs*Δx*D)
 
@@ -78,7 +78,7 @@ end
 
 function IntervalAverage(data::AbstractVector{T} where T<:Any, Δx, fs, D)
 
-    Nx_chunk = floor(Int, fs*Δx*D)#Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged (round down if not an integer)
+    Nx_chunk = Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged
     new_Nx = Int(length(data)/Nx_chunk) # The new number of total indices in the x dimension
 
     data_reshaped = reshape(data, (Nx_chunk, new_Nx))
@@ -92,7 +92,7 @@ end
 
 function IntervalAverage(data::AbstractVector{T} where T<:Any, Δx, fs, D, δ₁, δ₂)
 
-    Nx_chunk = floor(Int, fs*Δx*D)#Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged (round down if not an integer)
+    Nx_chunk = Int(fs*Δx*D) # number of indices that constitues one chunk in x to be averaged
     Nx_first_chunk = Int(δ₁*fs*Δx*D)
     Nx_last_chunk = Int(δ₂*fs*Δx*D)
 
